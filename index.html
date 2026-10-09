@@ -8,249 +8,261 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #EDF1EE;
-    --surface: #F8FAF8;
-    --ink: #12202B;
-    --muted: #4F6069;
-    --line: #C9D3CE;
-    --grid: rgba(18, 32, 43, .055);
-    --accent: #0B7A75;
-    --accent-ink: #FFFFFF;
-    --amber: #C98A00;
-    --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-    --body: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
-    box-sizing: border-box;
-    padding-top: env(safe-area-inset-top, 0px);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0F1A20; --surface: #16252D; --ink: #E6EEEA; --muted: #9AB0B5;
-      --line: #2A3D46; --grid: rgba(230, 238, 234, .045);
-      --accent: #4CC9BE; --accent-ink: #06211F; --amber: #E5B341;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #0F1A20; --surface: #16252D; --ink: #E6EEEA; --muted: #9AB0B5;
-    --line: #2A3D46; --grid: rgba(230, 238, 234, .045);
-    --accent: #4CC9BE; --accent-ink: #06211F; --amber: #E5B341;
-  }
+:root{
+  --bg:#07111c; --panel:#0e1b29; --panel-light:#132334;
+  --text:#edf3f7; --text-soft:#c1ced8; --text-dim:#899bab;
+  --blue:#42a5e8; --blue-bright:#69c3f2;
+  --copper:#c47b45; --copper-light:#df9b67;
+  --border:rgba(105,195,242,.19); --border-strong:rgba(105,195,242,.45); --border-soft:rgba(237,243,247,.07);
+  --shadow:rgba(0,0,0,.35);
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --head:"Space Grotesk","Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:radial-gradient(circle at 85% 10%,rgba(66,165,232,.08),transparent 30%),var(--bg);color:var(--text);font-family:"IBM Plex Sans","Segoe UI",Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom,0)}
+body::before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(105,195,242,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(105,195,242,.035) 1px,transparent 1px);background-size:42px 42px;pointer-events:none;z-index:-1}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+img{max-width:100%;display:block} a{color:inherit} button{font-family:inherit}
+:focus-visible{outline:2px solid var(--blue-bright);outline-offset:3px}
+.wrap{width:min(calc(100% - 48px),1000px);margin:0 auto}
+h1,h2,h3{margin:0;font-family:var(--head);font-weight:600}
 
-  *, *::before, *::after { box-sizing: inherit; }
-  html { scroll-behavior: smooth; scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 72px); }
-  body {
-    margin: 0;
-    background-color: var(--bg);
-    background-image:
-      linear-gradient(var(--grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-    background-size: 32px 32px;
-    color: var(--ink);
-    font: 400 1rem/1.65 var(--body);
-    -webkit-font-smoothing: antialiased;
-  }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+/* Navbar */
+.navbar{position:sticky;top:0;z-index:50;background:rgba(7,17,28,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--border-soft);padding-top:env(safe-area-inset-top,0)}
+.nav-container{width:min(calc(100% - 48px),1000px);min-height:68px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.nav-logo{font:700 15px var(--head);letter-spacing:.08em;text-decoration:none;white-space:nowrap}
+.nav-logo:hover{color:var(--blue-bright)}
+.nav-links{display:flex;align-items:center;gap:20px}
+.nav-links a{color:var(--text-dim);font:400 10px var(--mono);text-decoration:none;text-transform:uppercase;letter-spacing:.04em;transition:color .2s}
+.nav-links a:hover{color:var(--blue-bright)}
 
-  a { color: inherit; }
-  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-  .wrap { width: min(1080px, 100% - 40px); margin-inline: auto; }
-  h1, h2, h3 { font-family: var(--display); line-height: 1.1; margin: 0; letter-spacing: -.02em; }
+/* Hero */
+.hero{padding:72px 0 25px}
+.titleblock{overflow:hidden;background:linear-gradient(145deg,rgba(14,27,41,.98),rgba(9,20,32,.98));border:1px solid var(--border);border-radius:4px;box-shadow:0 20px 50px var(--shadow)}
+.titleblock-top{display:flex;align-items:flex-start;justify-content:space-between;gap:25px;padding:30px;border-bottom:1px solid var(--border)}
+.partno{margin-bottom:8px;color:var(--copper-light);font:400 11px var(--mono);letter-spacing:.16em}
+.titleblock-top h1{font-size:clamp(32px,5vw,48px);line-height:1.08;font-weight:600}
+.role{margin-top:10px;color:var(--text-dim);font:400 14px/1.7 var(--mono)}
+.status-pill{flex-shrink:0;padding:6px 13px;border:1px solid var(--blue);border-radius:999px;color:var(--blue-bright);font:400 10px var(--mono);white-space:nowrap}
+.specs{display:grid;grid-template-columns:repeat(4,1fr)}
+.spec{padding:18px 22px;border-right:1px solid var(--border)}
+.spec:last-child{border-right:0}
+.spec .k{margin-bottom:5px;color:var(--text-dim);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+.spec .v{font:400 13px var(--mono)}
+.contact-row{display:flex;flex-wrap:wrap;gap:8px 15px;padding:15px 28px;border-top:1px solid var(--border-soft);color:var(--text-dim);font:400 11px var(--mono)}
+.contact-row a{color:var(--text-dim);text-decoration:none;border-bottom:1px dotted var(--text-dim)}
+.contact-row a:hover{color:var(--blue-bright);border-color:var(--blue-bright)}
+.separator{color:#526678}
+.scope{border-top:1px solid var(--border-soft)}
+.scope canvas{display:block;width:100%;height:190px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;padding:12px 28px;border-top:1px solid var(--border-soft);font:400 10px var(--mono);color:var(--text-dim)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{width:18px;height:3px;border-radius:2px;display:inline-block}
 
-  /* ---------- Navigasi ---------- */
-  .nav {
-    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
-    background: color-mix(in srgb, var(--bg) 88%, transparent);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
-  }
-  .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 56px; }
-  .brand { font: 700 1.05rem var(--display); text-decoration: none; white-space: nowrap; }
-  .nav ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; overflow-x: auto; scrollbar-width: none; }
-  .nav ul::-webkit-scrollbar { display: none; }
-  .nav a.link { display: block; padding: 8px 12px; border-radius: 999px; text-decoration: none; color: var(--muted); font-size: .92rem; font-weight: 500; white-space: nowrap; }
-  .nav a.link:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 7%, transparent); }
-  .theme { flex: none; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; display: grid; place-items: center; }
-  .theme:hover { border-color: var(--accent); }
-  @media (max-width: 720px) { .brand { display: none; } }
+/* Section */
+.section{padding:68px 0;border-bottom:1px solid var(--border-soft)}
+.section-tag{display:block;margin-bottom:9px;color:var(--copper-light);font:400 11px var(--mono);letter-spacing:.15em;text-transform:uppercase}
+.section h2{margin-bottom:28px;font-size:clamp(27px,4vw,36px);line-height:1.2}
+.summary-text{max-width:720px;margin:0 0 14px;color:var(--text-soft);font-size:15px;line-height:1.8}
+.summary-text strong{color:var(--blue-bright)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:65px}
+.sub{color:var(--text-dim);font-size:14px;margin:-14px 0 28px}
 
-  /* ---------- Hero ---------- */
-  .hero { padding: 64px 0 40px; }
-  .hero-top { display: grid; grid-template-columns: 1fr 220px; gap: 48px; align-items: center; }
-  .hero h1 { font-size: clamp(2.4rem, 6.4vw, 4.6rem); font-weight: 700; max-width: 12ch; }
-  .role { margin: 20px 0 0; font-size: 1.15rem; color: var(--muted); max-width: 48ch; }
-  .hero .lede { margin: 16px 0 0; max-width: 60ch; }
-  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border-radius: 10px; font-weight: 600; font-size: .95rem; text-decoration: none; border: 1.5px solid var(--ink); color: var(--ink); background: transparent; }
-  .btn:hover { background: color-mix(in srgb, var(--ink) 8%, transparent); }
-  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
-  .btn.primary:hover { filter: brightness(1.08); }
-  .portrait { justify-self: end; width: 220px; aspect-ratio: 4/5; }
-  .portrait .frame { border-radius: 18px; }
-  @media (max-width: 800px) {
-    .hero { padding-top: 40px; }
-    .hero-top { grid-template-columns: 1fr; gap: 28px; }
-    .portrait { justify-self: start; width: 140px; order: -1; }
-  }
+/* Gambar */
+.frame{position:relative;width:100%;height:100%;overflow:hidden;background:#050a10;border:1px solid rgba(117,199,255,.13);border-radius:4px}
+.frame img{width:100%;height:100%;object-fit:cover}
+.frame img.zoom{cursor:zoom-in}
+.ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:12px;text-align:center;color:var(--text-dim);font:400 10px var(--mono);background:repeating-linear-gradient(135deg,transparent 0 12px,rgba(105,195,242,.04) 12px 13px)}
+.ph svg{width:28px;height:28px;opacity:.7}
+.ph b{font-weight:500;color:var(--text-soft);font-size:11px}
+.ph code{font:inherit;word-break:break-all;color:var(--copper-light)}
+.thumbs{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.thumbs .t{width:84px;height:58px}
+.thumbs .t .frame{border-radius:3px;border-color:rgba(117,199,255,.18)}
+.thumbs .t img{opacity:.65;transition:opacity .2s;cursor:zoom-in}
+.thumbs .t:hover img{opacity:1}
 
-  .scope { margin-top: 44px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); overflow: hidden; }
-  .scope canvas { display: block; width: 100%; height: 220px; }
-  .legend { display: flex; flex-wrap: wrap; gap: 8px 22px; padding: 12px 18px; border-top: 1px solid var(--line); font-size: .85rem; color: var(--muted); }
-  .legend span { display: inline-flex; align-items: center; gap: 8px; }
-  .legend i { width: 18px; height: 3px; border-radius: 2px; display: inline-block; }
+/* Keahlian */
+.skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.skill-card{padding:25px;background:var(--panel);border:1px solid var(--border);border-radius:4px;transition:border-color .2s,transform .2s}
+.skill-card:hover{border-color:var(--border-strong);transform:translateY(-2px)}
+.skill-number{margin-bottom:15px;color:var(--copper-light);font:400 11px var(--mono)}
+.skill-card .cat{margin-bottom:12px;color:var(--blue-bright);font:400 11px var(--mono);text-transform:uppercase;letter-spacing:.04em}
+.skill-card .items{color:var(--text-dim);font-size:13px;line-height:1.9}
 
-  /* ---------- Section ---------- */
-  section.block { padding: 72px 0 8px; }
-  section.block > .wrap > h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 8px; }
-  .sub { color: var(--muted); margin: 0 0 36px; max-width: 60ch; }
+/* Kelompok & proyek */
+.group+.group{margin-top:56px}
+.cat-title{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;margin:0 0 22px;padding-bottom:10px;border-bottom:1px solid var(--border);font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--blue-bright)}
+.cat-title .count{color:var(--text-dim);letter-spacing:.04em;text-transform:none}
+.project{position:relative;margin-bottom:22px;overflow:hidden;background:linear-gradient(145deg,rgba(14,27,41,.98),rgba(9,20,32,.98));border:1px solid var(--border);border-radius:4px;transition:transform .2s,border-color .2s,box-shadow .2s}
+.project::before{content:"";position:absolute;left:0;top:0;width:3px;height:100%;background:var(--copper)}
+.project:hover{transform:translateY(-2px);border-color:var(--border-strong);box-shadow:0 14px 35px rgba(0,0,0,.22)}
+.project-head{padding:22px 27px 17px;border-bottom:1px solid var(--border-soft)}
+.project-meta{display:flex;align-items:center;justify-content:space-between;gap:15px}
+.yr{color:var(--copper-light);font:400 11px var(--mono)}
+.project-id{color:var(--blue);font:400 10px var(--mono);letter-spacing:.08em}
+.project-head h3{margin-top:7px;font-size:21px;line-height:1.35}
+.subrole{margin-top:8px;color:var(--text-dim);font-size:13px;font-style:italic}
+.badge{display:inline-block;margin-top:12px;padding:5px 10px;border:1px solid var(--blue);color:var(--blue-bright);font:400 10px var(--mono)}
+.project-body{display:grid;grid-template-columns:300px 1fr;gap:26px;padding:22px 27px 25px}
+.project-body .cover{aspect-ratio:4/3}
+ul.pts{margin:0;padding-left:20px;color:var(--text-soft);font-size:14px;line-height:1.75;display:grid;gap:7px}
+ul.pts li::marker{color:var(--copper)}
+.specstrip{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:18px;padding-top:15px;border-top:1px solid var(--border-soft)}
+.specstrip .item{color:var(--text-dim);font:400 11px var(--mono)}
+.specstrip .item b{margin-right:4px;color:var(--blue-bright);font-weight:500}
+.tagrow{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0;padding:0;list-style:none}
+.tagrow li{padding:3px 9px;border:1px solid var(--border);border-radius:3px;color:var(--text-dim);font:400 10px var(--mono)}
+.btn{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:9px 14px;background:transparent;border:1px solid var(--blue);border-radius:3px;color:var(--blue-bright);font:400 11px var(--mono);text-decoration:none;cursor:pointer;transition:background .2s,color .2s,transform .2s}
+.btn:hover{background:var(--blue);color:#06101a;transform:translateX(3px)}
 
-  /* ---------- Gambar / placeholder ---------- */
-  .frame { position: relative; width: 100%; height: 100%; border-radius: 12px; overflow: hidden; background: var(--surface); border: 1px solid var(--line); }
-  .frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .frame img.zoom { cursor: zoom-in; }
-  .ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 12px; text-align: center; color: var(--muted); font-size: .8rem; background: repeating-linear-gradient(135deg, transparent 0 12px, color-mix(in srgb, var(--ink) 4%, transparent) 12px 13px); }
-  .ph svg { width: 30px; height: 30px; opacity: .7; }
-  .ph b { font-weight: 600; color: var(--ink); font-size: .85rem; }
-  .ph code { font: 500 .72rem ui-monospace, Menlo, Consolas, monospace; word-break: break-all; }
-  .thumbs { display: flex; gap: 8px; margin-top: 8px; }
-  .thumbs .t { width: 64px; aspect-ratio: 4/3; }
-  .thumbs .t .frame { border-radius: 8px; }
-  .thumbs .t img { cursor: zoom-in; }
+/* Pengalaman */
+.exp-item{display:grid;grid-template-columns:260px 1fr;gap:26px;margin-bottom:40px}
+.exp-item:last-child{margin-bottom:0}
+.exp-item .cover{aspect-ratio:4/3}
+.exp-top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+.exp-top h3{font-size:18px;line-height:1.4}
+.exp-company{margin-top:4px;color:var(--blue-bright);font-size:13px}
+.dates{flex-shrink:0;color:var(--copper-light);font:400 11px var(--mono)}
+.exp-item ul.pts{margin-top:12px;color:var(--text-dim)}
 
-  /* ---------- Pengalaman ---------- */
-  .timeline { display: grid; gap: 24px; position: relative; }
-  .job { display: grid; grid-template-columns: 300px 1fr; gap: 28px; padding: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
-  .job .m { aspect-ratio: 4/3; }
-  .job h3 { font-size: 1.35rem; }
-  .job .org { margin: 4px 0 0; color: var(--accent); font-weight: 600; }
-  .job .when { margin: 2px 0 14px; color: var(--muted); font-size: .9rem; }
-  ul.pts { margin: 0; padding-left: 1.15rem; display: grid; gap: 8px; }
-  ul.pts li::marker { color: var(--accent); }
-  @media (max-width: 800px) { .job { grid-template-columns: 1fr; padding: 16px; } }
+/* Publikasi */
+.publication-card{padding:27px;background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--copper);border-radius:4px}
+.publication-label{margin-bottom:12px;color:var(--copper-light);font:400 11px var(--mono);letter-spacing:.12em}
+.publication-card h3{max-width:850px;margin-bottom:14px;font-size:20px;line-height:1.45}
+.publication-card p{margin:0;color:var(--text-dim);font-size:14px}
 
-  /* ---------- Proyek ---------- */
-  .projects { display: grid; gap: 56px; }
-  .proj { display: grid; grid-template-columns: 1.1fr 1fr; gap: 36px; align-items: start; }
-  .proj:nth-child(even) .pm { order: 2; }
-  .proj .cover { aspect-ratio: 16/10; }
-  .proj h3 { font-size: clamp(1.2rem, 2.2vw, 1.55rem); }
-  .proj .meta { margin: 8px 0 14px; color: var(--muted); font-size: .92rem; }
-  .badge { display: inline-block; margin-bottom: 12px; padding: 3px 12px; border-radius: 999px; font-size: .8rem; font-weight: 600; background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); }
-  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 18px 0; }
-  .stat { padding: 10px 14px; border-left: 3px solid var(--amber); background: var(--surface); border-radius: 0 10px 10px 0; }
-  .stat b { display: block; font: 700 1.35rem var(--display); }
-  .stat span { font-size: .82rem; color: var(--muted); }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0 0; padding: 0; list-style: none; }
-  .tags li { padding: 3px 11px; border: 1px solid var(--line); border-radius: 999px; font-size: .82rem; color: var(--muted); background: var(--surface); }
-  .plink { display: inline-block; margin-top: 16px; font-weight: 600; color: var(--accent); }
-  @media (max-width: 800px) {
-    .proj { grid-template-columns: 1fr; gap: 20px; }
-    .proj:nth-child(even) .pm { order: 0; }
-  }
+/* Pendidikan */
+.education-card{display:grid;grid-template-columns:1fr 1fr;gap:35px;padding:27px;background:var(--panel);border:1px solid var(--border);border-radius:4px}
+.education-year{margin-bottom:8px;color:var(--copper-light);font:400 11px var(--mono)}
+.education-card h3{font-size:21px}
+.education-card p{margin:6px 0 0;color:var(--text-dim);font-size:14px}
+.education-info{display:flex;flex-direction:column;gap:15px}
+.education-info div{padding-bottom:12px;border-bottom:1px solid var(--border-soft)}
+.education-info div:last-child{border-bottom:0;padding-bottom:0}
+.education-info span{display:block;margin-bottom:4px;color:var(--text-dim);font:400 9px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.education-info strong{display:block;font-size:13px;font-weight:500}
+.thesis{grid-column:1/-1;padding:16px 20px;border-left:3px solid var(--copper);background:rgba(196,123,69,.08);border-radius:0 4px 4px 0}
+.thesis small{display:block;margin-bottom:6px;color:var(--copper-light);font:400 10px var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.thesis p{margin:0;color:var(--text);font:500 16px/1.45 var(--head)}
+h3.subh{margin:44px 0 16px;color:var(--blue-bright);font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.role-card{padding:20px;background:var(--panel);border:1px solid var(--border);border-radius:3px;transition:border-color .2s}
+.role-card:hover{border-color:var(--border-strong)}
+.role-card .rl{margin:0;color:var(--copper-light);font:400 10px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.role-card h4{margin:6px 0 2px;font:600 16px/1.35 var(--head)}
+.role-card .dv{margin:0 0 10px;color:var(--text-dim);font-size:12px}
+.role-card p.ds{margin:0;color:var(--text-soft);font-size:13px;line-height:1.7}
 
-  /* ---------- Kelompok proyek ---------- */
-  .group + .group { margin-top: 80px; }
-  h3.cat { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; margin: 0 0 32px; padding-bottom: 12px; border-bottom: 2px solid var(--ink); font-size: clamp(1.6rem, 3.2vw, 2.1rem); }
-  h3.cat .count { font: 500 .9rem var(--body); letter-spacing: 0; color: var(--muted); }
+/* Sertifikat */
+.certs{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:15px}
+.cert{padding:14px 14px 18px;background:var(--panel);border:1px solid var(--border);border-radius:4px;transition:border-color .2s,transform .2s}
+.cert:hover{border-color:var(--border-strong);transform:translateY(-2px)}
+.cert .cm{aspect-ratio:4/3}
+.cert h3{margin:14px 2px 2px;font-size:16px}
+.cert p{margin:0 2px;color:var(--text-dim);font:400 11px var(--mono)}
+.cert .btn{margin:10px 2px 0}
 
-  /* ---------- Publikasi ---------- */
-  .pub { padding: 24px; border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 12px; background: var(--surface); }
-  .pub h3 { font-size: 1.2rem; font-weight: 500; letter-spacing: 0; line-height: 1.35; }
-  .pub p { margin: 10px 0 0; color: var(--muted); }
+/* Kontak */
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.contact-card{display:flex;flex-direction:column;gap:6px;padding:20px;background:var(--panel);border:1px solid var(--border);border-radius:3px;text-decoration:none;transition:border-color .2s}
+.contact-card:hover{border-color:var(--border-strong)}
+.contact-card span{color:var(--text-dim);font:400 9px var(--mono);letter-spacing:.12em}
+.contact-card strong{color:var(--text-soft);font-size:13px;font-weight:500;word-break:break-word}
+footer{padding:45px 0 70px;text-align:center}
+.footer-line{width:45px;height:2px;margin:0 auto 18px;background:var(--copper)}
+footer p{margin:0 0 3px;font:400 11px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+footer span{color:var(--text-dim);font:400 9px var(--mono)}
 
-  /* ---------- Sertifikat ---------- */
-  .certs { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-  .cert { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px 12px 18px; }
-  .cert .cm { aspect-ratio: 4/3; }
-  .cert h3 { font-size: 1.1rem; margin: 14px 4px 2px; letter-spacing: -.01em; }
-  .cert p { margin: 0 4px; color: var(--muted); font-size: .9rem; }
-  .cert a { display: inline-block; margin: 8px 4px 0; font-weight: 600; font-size: .9rem; color: var(--accent); }
+/* Lightbox */
+.lb{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;background:rgba(3,8,13,.9);backdrop-filter:blur(7px);padding:24px}
+.lb.open{display:flex}
+.lb img{max-width:min(1100px,100%);max-height:84vh;border:1px solid var(--border-strong);border-radius:4px;background:#050a10}
+.lb button{position:absolute;width:40px;height:40px;border-radius:3px;border:1px solid rgba(117,199,255,.25);background:transparent;color:var(--text-dim);font-size:24px;cursor:pointer}
+.lb button:hover{background:var(--copper);border-color:var(--copper);color:#fff}
+.lb .x{top:calc(env(safe-area-inset-top,0px) + 16px);right:16px}
+.lb .p{left:14px;top:50%}.lb .n{right:14px;top:50%}
 
-  /* ---------- Keahlian ---------- */
-  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-  .skill { padding: 20px 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
-  .skill h3 { font-size: 1.1rem; margin-bottom: 12px; }
-  .skill .tags { margin: 0; }
-  .skill .tags li { color: var(--ink); background: transparent; }
-
-  /* ---------- Pendidikan & kontak ---------- */
-  .edu { padding: 22px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
-  .edu h3 { font-size: 1.25rem; }
-  .edu .org { margin: 4px 0 0; color: var(--accent); font-weight: 600; }
-  .edu .when { color: var(--muted); font-size: .9rem; margin: 2px 0 12px; }
-  .thesis { margin-top: 18px; padding: 14px 18px; border-left: 4px solid var(--amber); background: color-mix(in srgb, var(--amber) 10%, transparent); border-radius: 0 10px 10px 0; }
-  .thesis small { display: block; color: var(--muted); font-size: .85rem; font-weight: 600; margin-bottom: 4px; }
-  .thesis p { margin: 0; font-family: var(--display); font-size: 1.05rem; line-height: 1.4; letter-spacing: -.005em; }
-  h3.subh { margin: 44px 0 18px; font-size: 1.4rem; }
-  .roles { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
-  .role-card { padding: 18px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
-  .role-card .rl { margin: 0; color: var(--accent); font-weight: 600; font-size: .92rem; }
-  .role-card h4 { margin: 4px 0 2px; font: 700 1.1rem/1.25 var(--display); letter-spacing: -.01em; }
-  .role-card .dv { margin: 0 0 10px; color: var(--muted); font-size: .88rem; }
-  .role-card p.ds { margin: 0; font-size: .95rem; }
-  .contact { display: flex; flex-wrap: wrap; gap: 12px; }
-  footer { margin-top: 72px; padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
-
-  /* ---------- Lightbox ---------- */
-  .lb { position: fixed; inset: 0; z-index: 50; display: none; align-items: center; justify-content: center; background: rgba(6, 12, 16, .88); padding: 24px; }
-  .lb.open { display: flex; }
-  .lb img { max-width: min(1100px, 100%); max-height: 84vh; border-radius: 10px; }
-  .lb button { position: absolute; width: 44px; height: 44px; border-radius: 50%; border: 0; background: rgba(255,255,255,.16); color: #fff; font-size: 1.4rem; cursor: pointer; }
-  .lb button:hover { background: rgba(255,255,255,.3); }
-  .lb .x { top: calc(env(safe-area-inset-top, 0px) + 16px); right: 16px; }
-  .lb .p { left: 14px; top: 50%; }
-  .lb .n { right: 14px; top: 50%; }
+/* Responsif */
+@media (max-width:850px){
+  .nav-links{gap:12px}
+  .specs{grid-template-columns:repeat(2,1fr)}
+  .spec:nth-child(2n){border-right:0}
+  .about-grid,.education-card,.contact-grid,.skill-grid{grid-template-columns:1fr;gap:20px}
+  .project-body,.exp-item{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .wrap{width:min(calc(100% - 30px),1000px)}
+  .nav-container{width:min(calc(100% - 30px),1000px)}
+  .nav-links{display:none}
+  .hero{padding-top:30px}
+  .titleblock-top{flex-direction:column;padding:24px}
+  .titleblock-top h1{font-size:34px}
+  .role{font-size:11px}
+  .specs{grid-template-columns:1fr}
+  .spec{border-right:0;border-bottom:1px solid var(--border-soft)}
+  .contact-row{flex-direction:column;gap:7px}
+  .separator{display:none}
+  .section{padding:48px 0}
+  .project-head,.project-body{padding-left:20px;padding-right:20px}
+  .exp-top{flex-direction:column;gap:5px}
+}
 </style>
 </head>
 <body>
 
-<header class="nav">
-  <div class="wrap">
-    <a class="brand" href="#top">Fabianus Kesa</a>
-    <ul id="navlinks"></ul>
-    <button class="theme" id="themeBtn" aria-label="Ganti tema terang/gelap" title="Ganti tema">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-    </button>
+<header class="navbar">
+  <div class="nav-container">
+    <a class="nav-logo" href="#top" id="logo"></a>
+    <nav class="nav-links" id="navlinks" aria-label="Navigasi utama"></nav>
   </div>
 </header>
 
 <main id="top">
   <section class="hero">
     <div class="wrap">
-      <div class="hero-top">
-        <div>
-          <h1 id="hName"></h1>
-          <p class="role" id="hRole"></p>
-          <p class="lede" id="hSummary"></p>
-          <div class="actions" id="hActions"></div>
+      <div class="titleblock">
+        <div class="titleblock-top">
+          <div>
+            <div class="partno">PORTOFOLIO TEKNIK</div>
+            <h1 id="hName"></h1>
+            <div class="role" id="hRole"></div>
+          </div>
+          <span class="status-pill">LULUSAN 2026</span>
         </div>
-        <div class="portrait" id="hPortrait"></div>
-      </div>
-      <div class="scope" aria-label="Animasi gelombang SPWM: sinus referensi dibandingkan dengan carrier segitiga menghasilkan sinyal PWM">
-        <canvas id="scope" role="img" aria-label="Animasi gelombang SPWM"></canvas>
-        <div class="legend">
-          <span><i style="background:var(--ink)"></i>Referensi sinus</span>
-          <span><i style="background:var(--amber)"></i>Carrier segitiga</span>
-          <span><i style="background:var(--accent)"></i>Keluaran SPWM</span>
+        <div class="specs" id="hSpecs"></div>
+        <div class="contact-row" id="hContact"></div>
+        <div class="scope">
+          <canvas id="scope" role="img" aria-label="Animasi gelombang SPWM: sinus referensi dibandingkan carrier segitiga menghasilkan sinyal PWM"></canvas>
+          <div class="legend">
+            <span><i style="background:var(--text)"></i>Referensi sinus</span>
+            <span><i style="background:var(--copper-light)"></i>Carrier segitiga</span>
+            <span><i style="background:var(--blue-bright)"></i>Keluaran SPWM</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="block" id="tentang"><div class="wrap"></div></section>
-  <section class="block" id="pengalaman"><div class="wrap"></div></section>
-  <section class="block" id="proyek"><div class="wrap"></div></section>
-  <section class="block" id="publikasi"><div class="wrap"></div></section>
-  <section class="block" id="sertifikat"><div class="wrap"></div></section>
-  <section class="block" id="keahlian"><div class="wrap"></div></section>
-  <section class="block" id="pendidikan"><div class="wrap"></div></section>
-  <section class="block" id="kontak"><div class="wrap"></div></section>
+  <section class="section" id="tentang"><div class="wrap"></div></section>
+  <section class="section" id="keahlian"><div class="wrap"></div></section>
+  <section class="section" id="proyek"><div class="wrap"></div></section>
+  <section class="section" id="pengalaman"><div class="wrap"></div></section>
+  <section class="section" id="publikasi"><div class="wrap"></div></section>
+  <section class="section" id="pendidikan"><div class="wrap"></div></section>
+  <section class="section" id="sertifikat"><div class="wrap"></div></section>
+  <section class="section" id="kontak"><div class="wrap"></div></section>
 </main>
 
 <footer>
-  <div class="wrap" id="footer"></div>
+  <div class="wrap">
+    <div class="footer-line"></div>
+    <p id="fName"></p>
+    <span>Elektronika Daya · Sistem Kontrol · Otomasi Industri</span>
+  </div>
 </footer>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Pratinjau gambar">
@@ -278,7 +290,7 @@ const DATA = {
   summary:
     "Lulusan Teknik Elektro (IPK 3,61/4,00) dengan pengalaman langsung dalam desain PCB, pengujian dan troubleshooting perangkat keras, integrasi dan kalibrasi sensor, serta otomasi. Spesialisasi di elektronika daya dan sistem kontrol.",
   about:
-    "Penulis makalah konferensi terindeks IEEE tentang regulasi tegangan pada sistem fotovoltaik off-grid menggunakan konverter boost cascade 4 tingkat dan inverter tiga-lengan satu fasa.",
+    "Penulis dan presenter makalah konferensi terindeks IEEE tentang regulasi tegangan pada sistem fotovoltaik off-grid menggunakan konverter boost cascade 4 tingkat dan inverter tiga-lengan satu fasa.",
   cvFile: "cv.pdf", // taruh file CV di root repo dengan nama ini
 
   contact: {
@@ -294,7 +306,7 @@ const DATA = {
       title: "Asisten Laboratorium Sistem Kontrol",
       org: "Universitas Katolik Soegijapranata",
       when: "Sep 2025 – Des 2025",
-      images: ["images/pengalaman-lab-kontrol.jpeg"],
+      images: ["pengalaman-lab-kontrol.jpeg", "surat asdos.jpg"],
       points: [
         "Membantu pelaksanaan sesi Laboratorium Sistem Kontrol dan membimbing mahasiswa memahami sistem kontrol, PWM, SPWM, dan elektronika daya.",
         "Mengembangkan dan menguji modul perangkat keras Buck Chopper dengan metode kendali P, PI, dan Hysteresis untuk regulasi tegangan.",
@@ -306,7 +318,7 @@ const DATA = {
       title: "Magang Divisi Maintenance",
       org: "PT Paiton Operation & Maintenance Indonesia",
       when: "Feb 2025 – Mar 2025",
-      images: ["images/pengalaman-paiton.jpeg"],
+      images: ["pengalaman-paiton.jpeg", "sertif paiton.jpeg"],
       points: [
         "Magang selama satu bulan di divisi Maintenance, memperoleh pengalaman langsung dalam operasi pemeliharaan pembangkit listrik dan troubleshooting peralatan.",
         "Membantu pemeliharaan preventif dan inspeksi pada sistem Plant Switchgear, FGD Control, dan ESP.",
@@ -330,7 +342,7 @@ const DATA = {
       title: "Regulasi Tegangan pada Sistem PV Off-Grid dengan Cascade Boost dan Inverter Tiga-Lengan",
       meta: "2025 – 2026 · Dibimbing oleh Dr. Leonardus Heru Pratomo",
       badge: "Diterima di FORTEI-ICEE 2026",
-      images: ["images/proyek-pv-offgrid-1.jpeg", "images/proyek-pv-offgrid-2.jpg", "images/proyek-pv-offgrid-3.jpg"],
+      images: ["WhatsApp Image 2026-09-29 at 14.18.01.jpeg", "fortei-icee2026_page-0001.jpg", "images/proyek-pv-offgrid-3.jpg"],
       points: [
         "Penulis dan presenter makalah di FORTEI-ICEE 2026 (International Conference on Electrical Engineering).",
         "Merancang sistem konversi daya PV off-grid yang mengintegrasikan konverter boost cascade 4 tingkat tanpa kapasitor DC-link perantara dengan inverter tiga-lengan satu fasa berbasis STM32F407 dan kendali tegangan PI loop tertutup.",
@@ -349,7 +361,7 @@ const DATA = {
       category: "Proyek Elektronika Daya",
       title: "Inverter H-Bridge Multisel & Inverter Buck-Boost 5-Tingkat",
       meta: "2025 – 2026 · Dibimbing oleh Dr. Leonardus Heru Pratomo · Peran: implementasi perangkat keras",
-      images: ["images/proyek-multilevel-1.jpeg"],
+      images: ["proyek-multilevel-1.jpeg"],
       points: [
         "Mengimplementasikan kendali switching pada inverter H-bridge multisel menggunakan mikrokontroler STM32F4, dengan logika kendali diturunkan dari tabel lookup hasil simulasi PSIM."
       ],
@@ -360,7 +372,7 @@ const DATA = {
       category: "Proyek Otomasi Industri & Kontrol",
       title: "Modul Pembelajaran Otomasi Industri — PLC & SCADA",
       meta: "2024 – 2025 · Proyek tim · Peran: implementasi perangkat keras",
-      images: ["images/proyek-plc-scada-1.jpeg", "images/proyek-plc-scada-2.jpeg"],
+      images: ["proj-plc-omron-1.jpeg", "proj-scada-module-1.jpeg"],
       points: [
         "Merancang dan membangun modul pembelajaran PLC dan SCADA yang mengintegrasikan kendali motor, aktuator pneumatik, sensor, dan aktuator industri.",
         "Mengimplementasikan kendali motor maju-mundur, pengurutan pneumatik, dan fungsi Emergency Stop menggunakan PLC.",
@@ -373,7 +385,7 @@ const DATA = {
       category: "Proyek Elektronika Daya",
       title: "Inverter Buck-Boost Satu Fasa Lima Tingkat",
       meta: "Inverter H-bridge multisel",
-      images: ["images/proyek-inverter-5-tingkat-1.jpeg", "images/proyek-inverter-5-tingkat-2.jpg"],
+      images: ["proj-hbridge-inverter-1.jpeg", "images/proyek-inverter-5-tingkat-2.jpg"],
       points: [
         "Merancang dan membangun prototipe inverter buck-boost satu fasa lima tingkat dengan tujuh saklar daya aktif. Topologi dan urutan switching disimulasikan di PSIM, lalu diubah menjadi tabel lookup untuk kendali real-time.",
         "Kendali awalnya berjalan di Arduino Mega, kemudian dimigrasikan ke STM32F4 agar pemrosesan lebih cepat dan pembangkitan sinyal switching lebih fleksibel, sehingga menghasilkan keluaran AC multilevel yang stabil."
@@ -389,7 +401,7 @@ const DATA = {
       category: "Proyek IoT & Sistem Monitoring",
       title: "Sistem Pembersih Panel Surya Otomatis",
       meta: "Kendali berbasis IoT",
-      images: ["images/proyek-pembersih-panel-1.jpeg", "images/proyek-pembersih-panel-2.jpg"],
+      images: ["proj-pv-cleaning-1.jpeg", "images/proyek-pembersih-panel-2.jpg"],
       points: [
         "Mengembangkan sistem pembersih panel surya (PV) otomatis dengan kendali berbasis IoT, dirancang untuk menghilangkan debu dan daun yang jatuh dari permukaan panel.",
         "Pembersihan memakai air bertekanan yang disemprotkan melalui nozzle untuk memulihkan efisiensi panel dan daya listrik keluaran."
@@ -409,15 +421,15 @@ const DATA = {
 
   /* Contoh sertifikat — ganti dengan sertifikat kamu yang sebenarnya. */
   certificates: [
-    { title: "Sertifikat Author", issuer: "FORTEI-ICEE", year: "2026", images: ["images/sertifikat-1.png"], link: "" },
-    { title: "Sertifikat Presenter", issuer: "FORTEI-ICEE", year: "2026", images: ["images/sertifikat-2.png"], link: "" },
+    { title: "Sertifikat Author", issuer: "FORTEI-ICEE", year: "2026", images: ["sertif author.jpeg"], link: "" },
+    { title: "Sertifikat Presenter", issuer: "FORTEI-ICEE", year: "2026", images: ["sertif presentation.jpeg"], link: "" },
   ],
 
   skills: [
-    { group: "Elektronika & perangkat keras", items: ["Desain PCB (Target 3001)", "Pengujian & troubleshooting perangkat keras", "Integrasi & kalibrasi sensor", "Osiloskop", "Multimeter digital"] },
-    { group: "Embedded / firmware", items: ["STM32", "Arduino Mega", "C/C++", "PWM"] },
-    { group: "Elektronika daya & kendali", items: ["Konverter buck-boost DC-DC", "Inverter satu fasa tiga lengan", "Kendali tegangan PI"] },
-    { group: "Otomasi industri & simulasi", items: ["PSIM", "Haiwell PLC", "CX-One Omron"] },
+    { group: "Elektronika & perangkat keras", items: ["Desain & pengembangan PCB", "Target 3001!", "Implementasi rangkaian", "Integrasi & kalibrasi sensor", "Pengujian perangkat keras", "Osiloskop", "Multimeter digital", "Catu daya laboratorium"] },
+    { group: "Embedded / firmware", items: ["STM32", "STM32F407 / STM32F4", "ESP32", "Arduino Mega", "C / C++", "PWM"] },
+    { group: "Elektronika daya & kendali", items: ["Konverter DC-DC", "Buck-Boost", "Konverter DC-AC / Inverter", "Kendali P, PI, Hysteresis", "Regulasi tegangan PV"] },
+    { group: "Otomasi industri & simulasi", items: ["Haiwell PLC", "HMI", "PSIM", "Kendali PWM", "Sistem kontrol industri"] },
     { group: "Lainnya", items: ["Dokumentasi teknis", "Standar publikasi IEEE"] }
   ],
 
@@ -469,7 +481,7 @@ function h(tag, attrs = {}, ...kids) {
 }
 const ICON_IMG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M21 16l-5-5-8 9"/></svg>';
 
-/* ---------- Lightbox ---------- */
+/* Lightbox */
 const lb = { srcs: [], i: 0, alt: "" };
 function lbShow() { $("#lbImg").src = lb.srcs[lb.i]; $("#lbImg").alt = lb.alt; $("#lb").classList.add("open"); const multi = lb.srcs.length > 1; $("#lbP").hidden = $("#lbN").hidden = !multi; }
 function lbOpen(srcs, i, alt) { lb.srcs = srcs; lb.i = i; lb.alt = alt; lbShow(); $("#lbX").focus(); }
@@ -486,7 +498,7 @@ document.addEventListener("keydown", e => {
   if (e.key === "ArrowRight") lbStep(1);
 });
 
-/* ---------- Media: gambar dengan placeholder otomatis ---------- */
+/* Gambar dengan placeholder otomatis */
 function placeholder(src, label) {
   const p = h("div", { class: "ph" });
   p.innerHTML = ICON_IMG;
@@ -499,242 +511,185 @@ function media(images, alt, label) {
   const frame = h("div", { class: "frame" });
   const thumbs = h("div", { class: "thumbs" });
   const wrap = h("div", { class: "media" }, frame);
-  const loaded = () => list.filter((_, i) => ok[i]);
-  const open = src => () => { const l = loaded(); lbOpen(l, l.indexOf(src), alt); };
-
+  const open = src => () => { const l = list.filter((_, i) => ok[i]); lbOpen(l, l.indexOf(src), alt); };
   const ph = placeholder(list[0], label);
   frame.append(ph);
   const main = new Image(); main.alt = alt; main.decoding = "async";
   main.onload = () => { ok[0] = true; ph.remove(); main.classList.add("zoom"); main.onclick = open(list[0]); frame.append(main); };
   main.src = list[0];
-
   if (list.length > 1) {
     wrap.append(thumbs);
     list.slice(1).forEach((src, k) => {
       const idx = k + 1;
       const im = new Image(); im.alt = alt + " (" + (idx + 1) + ")"; im.decoding = "async";
-      im.onload = () => {
-        ok[idx] = true;
-        const t = h("div", { class: "t" }, h("div", { class: "frame" }, im));
-        im.onclick = open(src);
-        thumbs.append(t);
-      };
+      im.onload = () => { ok[idx] = true; im.onclick = open(src); thumbs.append(h("div", { class: "t" }, h("div", { class: "frame" }, im))); };
       im.src = src;
     });
   }
   return wrap;
 }
 
-/* ---------- Render bagian-bagian ---------- */
-function section(id, title, sub, ...content) {
+/* Bagian */
+let secNo = 0;
+function section(id, tag, title, sub, ...content) {
+  secNo++;
   const w = $("#" + id + " .wrap");
-  w.append(h("h2", { text: title }));
+  w.append(h("span", { class: "section-tag", text: String(secNo).padStart(2, "0") + " / " + tag }), h("h2", { text: title }));
   if (sub) w.append(h("p", { class: "sub", text: sub }));
-  content.forEach(c => w.append(c));
+  content.forEach(c => c && w.append(c));
 }
+const nz = n => String(n).padStart(2, "0");
 
-// Navigasi
-[["tentang","Tentang"],["pengalaman","Pengalaman"],["proyek","Proyek"],["publikasi","Publikasi"],["sertifikat","Sertifikat"],["keahlian","Keahlian"],["pendidikan","Pendidikan"],["kontak","Kontak"]]
-  .forEach(([id, t]) => $("#navlinks").append(h("li", {}, h("a", { class: "link", href: "#" + id, text: t }))));
+/* Navigasi */
+$("#logo").textContent = DATA.name.split(" ").slice(0, 2).join(" ").toUpperCase();
+[["tentang","Profil"],["keahlian","Keahlian"],["proyek","Proyek"],["pengalaman","Pengalaman"],["publikasi","Publikasi"],["pendidikan","Pendidikan"],["sertifikat","Sertifikat"],["kontak","Kontak"]]
+  .forEach(([id, t]) => $("#navlinks").append(h("a", { href: "#" + id, text: t })));
 
-// Hero
+/* Hero */
+const c = DATA.contact, ed = DATA.education;
 document.title = DATA.name + " — Teknik Elektro, Elektronika Daya & Otomasi Industri";
 $("#hName").textContent = DATA.name;
-$("#hRole").textContent = DATA.role;
-$("#hSummary").textContent = DATA.summary;
-$("#hActions").append(
-  h("a", { class: "btn primary", href: "#proyek", text: "Lihat proyek" }),
-  h("a", { class: "btn", href: DATA.cvFile, text: "Unduh CV" }),
-  h("a", { class: "btn", href: "mailto:" + DATA.contact.email, text: "Kirim email" })
-);
-$("#hPortrait").append(media([DATA.photo], "Foto " + DATA.name, "Foto profil"));
+$("#hRole").textContent = "Teknik Elektro | Elektronika Daya | Sistem Kontrol";
+$("#fName").textContent = DATA.name;
+[["Pendidikan", "Teknik Elektro"], ["IPK", "3,61 / 4,00"], ["Fokus", "Elektronika Daya & Kontrol"], ["Lokasi", c.location]]
+  .forEach(([k, v]) => $("#hSpecs").append(h("div", { class: "spec" }, h("div", { class: "k", text: k }), h("div", { class: "v", text: v }))));
+const crow = $("#hContact");
+const crumbs = [
+  h("span", { text: c.location }),
+  h("a", { href: "mailto:" + c.email, text: c.email }),
+  h("a", { href: "tel:+62" + c.phone.replace(/^0/, ""), text: c.phone }),
+  c.linkedin ? h("a", { href: c.linkedin, target: "_blank", rel: "noopener", text: "LinkedIn" }) : null,
+  c.github ? h("a", { href: c.github, target: "_blank", rel: "noopener", text: "GitHub" }) : null,
+  DATA.cvFile ? h("a", { href: DATA.cvFile, text: "Unduh CV" }) : null
+].filter(Boolean);
+crumbs.forEach((el, i) => { if (i) crow.append(h("span", { class: "separator", text: "|" })); crow.append(el); });
 
-// Tentang
-section("tentang", "Tentang saya", null, h("p", { text: DATA.about, style: "max-width:68ch;margin:0 0 12px" }), h("p", { text: DATA.summary, style: "max-width:68ch;margin:0;color:var(--muted)" }));
+/* Profil */
+section("tentang", "PROFIL", "Profil Teknik", null,
+  h("p", { class: "summary-text", text: DATA.summary }),
+  h("p", { class: "summary-text", text: DATA.about }));
 
-// Pengalaman
-section("pengalaman", "Pengalaman", "Magang industri dan pengalaman mengajar di laboratorium.",
-  h("div", { class: "timeline" }, DATA.experience.map(e =>
-    h("article", { class: "job" },
-      h("div", { class: "m" }, media(e.images, e.title + " — " + e.org, "Foto pengalaman")),
-      h("div", {},
-        h("h3", { text: e.title }),
-        h("p", { class: "org", text: e.org }),
-        h("p", { class: "when", text: e.when }),
-        h("ul", { class: "pts" }, e.points.map(p => h("li", { text: p })))
-      )
-    )
-  ))
-);
+/* Keahlian */
+section("keahlian", "KEAHLIAN TEKNIS", "Keahlian Teknik", null,
+  h("div", { class: "skill-grid" }, DATA.skills.map((s, i) =>
+    h("div", { class: "skill-card" },
+      h("div", { class: "skill-number", text: nz(i + 1) }),
+      h("div", { class: "cat", text: s.group }),
+      h("div", { class: "items" }, s.items.map(x => [x, h("br")]).flat().slice(0, -1))))));
 
-// Proyek (dikelompokkan berdasarkan kategori)
+/* Proyek */
+let pn = 0;
 function renderProject(p) {
-  const cover = h("div", { class: "pm" }, h("div", { class: "cover" }, media(p.images, p.title, "Foto proyek")));
-  const body = h("div", {},
-    p.badge ? h("span", { class: "badge", text: p.badge }) : null,
+  pn++;
+  const parts = (p.meta || "").split(" · ");
+  const year = /^\d{4}/.test(parts[0]) ? parts.shift() : "";
+  const sub = parts.join(" — ");
+  const head = h("div", { class: "project-head" },
+    h("div", { class: "project-meta" }, h("span", { class: "yr", text: year }), h("span", { class: "project-id", text: "PROYEK " + nz(pn) })),
     h("h3", { text: p.title }),
-    h("p", { class: "meta", text: p.meta }),
+    sub ? h("div", { class: "subrole", text: sub }) : null,
+    p.badge ? h("span", { class: "badge", text: p.badge }) : null);
+  const text = h("div", {},
     h("ul", { class: "pts" }, p.points.map(x => h("li", { text: x }))),
-    p.stats ? h("div", { class: "stats" }, p.stats.map(s => h("div", { class: "stat" }, h("b", { text: s.v }), h("span", { text: s.l })))) : null,
-    p.tags ? h("ul", { class: "tags" }, p.tags.map(t => h("li", { text: t }))) : null,
-    p.link ? h("a", { class: "plink", href: p.link, target: "_blank", rel: "noopener", text: "Lihat detail" }) : null
-  );
-  return h("article", { class: "proj" }, cover, body);
+    p.stats ? h("div", { class: "specstrip" }, p.stats.map(s => h("span", { class: "item" }, h("b", { text: s.v }), s.l))) : null,
+    p.tags ? h("ul", { class: "tagrow" }, p.tags.map(t => h("li", { text: t }))) : null,
+    p.link ? h("a", { class: "btn", href: p.link, target: "_blank", rel: "noopener", text: "Lihat detail →" }) : null);
+  const body = h("div", { class: "project-body" }, h("div", { class: "cover" }, media(p.images, p.title, "Foto proyek")), text);
+  return h("article", { class: "project" }, head, body);
 }
-const projectGroups = DATA.projectCategories.map(cat => {
+const groups = DATA.projectCategories.map(cat => {
   const items = DATA.projects.filter(p => p.category === cat);
-  if (!items.length) return null;
-  return h("div", { class: "group" },
-    h("h3", { class: "cat" }, cat, h("span", { class: "count", text: items.length + " proyek" })),
-    h("div", { class: "projects" }, items.map(renderProject))
-  );
+  return items.length ? h("div", { class: "group" }, h("div", { class: "cat-title" }, cat, h("span", { class: "count", text: "· " + items.length + " proyek" })), items.map(renderProject)) : null;
 }).filter(Boolean);
-section("proyek", "Proyek teknik", "Proyek terpilih dari kuliah, penelitian, dan laboratorium, dikelompokkan berdasarkan bidang.", ...projectGroups);
+section("proyek", "PROYEK TERPILIH", "Proyek Teknik", null, ...groups);
 
-// Publikasi
+/* Pengalaman */
+section("pengalaman", "PENGALAMAN", "Pengalaman Teknik", null,
+  ...DATA.experience.map(e =>
+    h("article", { class: "exp-item" },
+      h("div", { class: "cover" }, media(e.images, e.title + " — " + e.org, "Foto pengalaman")),
+      h("div", {},
+        h("div", { class: "exp-top" }, h("div", {}, h("h3", { text: e.title }), h("div", { class: "exp-company", text: e.org })), h("span", { class: "dates", text: e.when })),
+        h("ul", { class: "pts" }, e.points.map(p => h("li", { text: p })))))));
+
+/* Publikasi */
 const pu = DATA.publication;
-section("publikasi", "Publikasi", null,
-  h("article", { class: "pub" },
-    h("span", { class: "badge", text: pu.status }),
-    h("h3", { text: "\u201C" + pu.title + "\u201D" }),
+section("publikasi", "RISET & PUBLIKASI", "Riset & Publikasi", null,
+  h("article", { class: "publication-card" },
+    h("div", { class: "publication-label", text: "FORTEI-ICEE 2026" }),
+    h("h3", { text: pu.title }),
     h("p", { text: pu.venue }),
-    pu.link ? h("a", { class: "plink", href: pu.link, target: "_blank", rel: "noopener", text: "Buka makalah" }) : null
-  )
-);
+    h("span", { class: "badge", text: pu.status.toUpperCase() + " · PENULIS & PRESENTER" }),
+    pu.link ? h("div", {}, h("a", { class: "btn", href: pu.link, target: "_blank", rel: "noopener", text: "Buka makalah →" })) : null));
 
-// Sertifikat
-section("sertifikat", "Sertifikat", "Klik gambar untuk memperbesar.",
-  h("div", { class: "certs" }, DATA.certificates.map(c =>
-    h("article", { class: "cert" },
-      h("div", { class: "cm" }, media(c.images, c.title, "Gambar sertifikat")),
-      h("h3", { text: c.title }),
-      h("p", { text: [c.issuer, c.year].filter(Boolean).join(", ") }),
-      c.link ? h("a", { href: c.link, target: "_blank", rel: "noopener", text: "Lihat kredensial" }) : null
-    )
-  ))
-);
-
-// Keahlian
-section("keahlian", "Keahlian", null,
-  h("div", { class: "skills" }, DATA.skills.map(s =>
-    h("div", { class: "skill" }, h("h3", { text: s.group }), h("ul", { class: "tags" }, s.items.map(i => h("li", { text: i }))))
-  ))
-);
-
-// Pendidikan, kepanitiaan, dan program kampus
-const ed = DATA.education;
-section("pendidikan", "Pendidikan", null,
-  h("div", { class: "edu" },
-    h("h3", { text: ed.degree }),
-    h("p", { class: "org", text: ed.school }),
-    h("p", { class: "when", text: ed.when }),
-    h("ul", { class: "pts" }, ed.points.map(p => h("li", { text: p }))),
-    h("div", { class: "thesis" }, h("small", { text: "Tugas Akhir" }), h("p", { text: ed.thesis }))
-  ),
+/* Pendidikan */
+section("pendidikan", "PENDIDIKAN", "Pendidikan", null,
+  h("div", { class: "education-card" },
+    h("div", {}, h("div", { class: "education-year", text: ed.when }), h("h3", { text: ed.degree }), h("p", { text: ed.school })),
+    h("div", { class: "education-info" }, ed.points.map(p => h("div", {}, h("span", { text: "CATATAN" }), h("strong", { text: p })))),
+    h("div", { class: "thesis" }, h("small", { text: "Tugas Akhir" }), h("p", { text: ed.thesis }))),
   h("h3", { class: "subh", text: "Kepanitiaan" }),
-  h("div", { class: "roles" }, ed.committees.map(c =>
-    h("article", { class: "role-card" },
-      h("p", { class: "rl", text: c.role }),
-      h("h4", { text: c.event }),
-      h("p", { class: "dv", text: c.division }),
-      h("p", { class: "ds", text: c.text })
-    )
-  )),
+  h("div", { class: "roles" }, ed.committees.map(x =>
+    h("article", { class: "role-card" }, h("p", { class: "rl", text: x.role }), h("h4", { text: x.event }), h("p", { class: "dv", text: x.division }), h("p", { class: "ds", text: x.text })))),
   h("h3", { class: "subh", text: "Program kampus" }),
-  h("div", { class: "roles" }, ed.programs.map(p =>
-    h("article", { class: "role-card" },
-      h("p", { class: "rl", text: p.role }),
-      h("h4", { text: p.name })
-    )
-  ))
-);
+  h("div", { class: "roles" }, ed.programs.map(x =>
+    h("article", { class: "role-card" }, h("p", { class: "rl", text: x.role }), h("h4", { text: x.name })))));
 
-// Kontak
-const c = DATA.contact;
-section("kontak", "Kontak", "Terbuka untuk peluang kerja, kolaborasi riset, dan diskusi teknis. Berlokasi di " + c.location + ".",
-  h("div", { class: "contact" },
-    h("a", { class: "btn primary", href: "mailto:" + c.email, text: c.email }),
-    h("a", { class: "btn", href: "tel:+62" + c.phone.replace(/^0/, ""), text: c.phone }),
-    c.linkedin ? h("a", { class: "btn", href: c.linkedin, target: "_blank", rel: "noopener", text: "LinkedIn" }) : null,
-    c.github ? h("a", { class: "btn", href: c.github, target: "_blank", rel: "noopener", text: "GitHub" }) : null
-  )
-);
+/* Sertifikat */
+section("sertifikat", "SERTIFIKAT", "Sertifikat", "Klik gambar untuk memperbesar.",
+  h("div", { class: "certs" }, DATA.certificates.map(x =>
+    h("article", { class: "cert" },
+      h("div", { class: "cm" }, media(x.images, x.title, "Gambar sertifikat")),
+      h("h3", { text: x.title }),
+      h("p", { text: [x.issuer, x.year].filter(Boolean).join(" · ") }),
+      x.link ? h("a", { class: "btn", href: x.link, target: "_blank", rel: "noopener", text: "Lihat kredensial →" }) : null))));
 
-$("#footer").textContent = "\u00A9 " + new Date().getFullYear() + " " + DATA.name + ".";
+/* Kontak */
+const cards = [
+  ["EMAIL", c.email, "mailto:" + c.email],
+  ["LINKEDIN", "Fabianus Kesa Jose Vernanda", c.linkedin],
+  ["TELEPON", c.phone, "tel:+62" + c.phone.replace(/^0/, "")],
+  ["GITHUB", c.github, c.github]
+].filter(x => x[2]);
+section("kontak", "KONTAK", "Mari Terhubung", "Terbuka untuk peluang kerja, kolaborasi riset, dan diskusi teknis di bidang elektronika daya, sistem kontrol, dan otomasi industri.",
+  h("div", { class: "contact-grid" }, cards.map(([k, v, href]) =>
+    h("a", { class: "contact-card", href, target: href.startsWith("http") ? "_blank" : null, rel: "noopener" }, h("span", { text: k }), h("strong", { text: v })))));
 
-/* ---------- Tema ---------- */
-(function () {
-  const root = document.documentElement;
-  try { const s = localStorage.getItem("theme"); if (s) root.setAttribute("data-theme", s); } catch (e) {}
-  $("#themeBtn").onclick = () => {
-    const dark = getComputedStyle(root).getPropertyValue("--bg").trim().toUpperCase() === "#0F1A20";
-    const next = dark ? "light" : "dark";
-    root.setAttribute("data-theme", next);
-    try { localStorage.setItem("theme", next); } catch (e) {}
-    drawScope();
-  };
-})();
-
-/* ---------- Animasi gelombang SPWM ---------- */
-const cv = $("#scope");
-const ctx = cv.getContext("2d");
+/* Animasi gelombang SPWM */
+const cv = $("#scope"), ctx = cv.getContext("2d");
 let phase = 0;
-function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
-function fitScope() {
-  const dpr = window.devicePixelRatio || 1;
-  const w = cv.clientWidth, hgt = cv.clientHeight;
-  cv.width = Math.round(w * dpr); cv.height = Math.round(hgt * dpr);
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-}
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function fitScope() { const d = window.devicePixelRatio || 1; cv.width = Math.round(cv.clientWidth * d); cv.height = Math.round(cv.clientHeight * d); ctx.setTransform(d, 0, 0, d, 0, 0); }
 function drawScope() {
-  const W = cv.clientWidth, H = cv.clientHeight;
-  if (!W) return;
+  const W = cv.clientWidth, H = cv.clientHeight; if (!W) return;
   ctx.clearRect(0, 0, W, H);
-  const ink = css("--ink"), amber = css("--amber"), accent = css("--accent"), line = css("--line");
-  const topMid = H * 0.27, topAmp = H * 0.20;
-  const botMid = H * 0.78, botAmp = H * 0.13;
-  const cycles = W < 560 ? 2 : 3;         // jumlah periode sinus yang tampak
-  const ratio = 12;                        // frekuensi carrier / referensi
-
-  // garis tengah
-  ctx.strokeStyle = line; ctx.lineWidth = 1; ctx.setLineDash([4, 6]);
+  const ink = css("--text"), cop = css("--copper-light"), acc = css("--blue-bright");
+  const topMid = H * .27, topAmp = H * .20, botMid = H * .78, botAmp = H * .13;
+  const cycles = W < 560 ? 2 : 3, ratio = 12;
+  ctx.strokeStyle = "rgba(105,195,242,.19)"; ctx.lineWidth = 1; ctx.setLineDash([4, 6]);
   [topMid, botMid].forEach(y => { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); });
   ctx.setLineDash([]);
-
   const ref = t => Math.sin(2 * Math.PI * t);
   const tri = t => { const f = (t * ratio) % 1; const x = f < 0 ? f + 1 : f; return x < .5 ? 4 * x - 1 : 3 - 4 * x; };
-
-  // sinus referensi
   ctx.strokeStyle = ink; ctx.lineWidth = 2; ctx.beginPath();
   for (let x = 0; x <= W; x += 2) { const t = (x / W) * cycles + phase; const y = topMid - ref(t) * topAmp * .85; x ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
   ctx.stroke();
-
-  // carrier segitiga
-  ctx.strokeStyle = amber; ctx.lineWidth = 1.4; ctx.beginPath();
-  for (let x = 0; x <= W; x += 1) { const t = (x / W) * cycles + phase; const y = topMid - tri(t) * topAmp; x ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
+  ctx.strokeStyle = cop; ctx.lineWidth = 1.4; ctx.beginPath();
+  for (let x = 0; x <= W; x++) { const t = (x / W) * cycles + phase; const y = topMid - tri(t) * topAmp; x ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
   ctx.stroke();
-
-  // keluaran SPWM
-  ctx.strokeStyle = accent; ctx.lineWidth = 2.4; ctx.lineJoin = "round"; ctx.beginPath();
+  ctx.strokeStyle = acc; ctx.lineWidth = 2.4; ctx.lineJoin = "round"; ctx.beginPath();
   let prev = null;
-  for (let x = 0; x <= W; x += 1) {
+  for (let x = 0; x <= W; x++) {
     const t = (x / W) * cycles + phase;
-    const v = ref(t) * .85 > tri(t) ? 1 : -1;
-    const y = botMid - v * botAmp;
-    if (prev === null) ctx.moveTo(x, y);
-    else { if (v !== prev) ctx.lineTo(x, botMid - prev * botAmp); ctx.lineTo(x, y); }
+    const v = ref(t) * .85 > tri(t) ? 1 : -1, y = botMid - v * botAmp;
+    if (prev === null) ctx.moveTo(x, y); else { if (v !== prev) ctx.lineTo(x, botMid - prev * botAmp); ctx.lineTo(x, y); }
     prev = v;
   }
   ctx.stroke();
 }
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-function tick() {
-  phase += 0.0011;
-  drawScope();
-  if (!document.hidden) requestAnimationFrame(tick); else document.addEventListener("visibilitychange", function once() { document.removeEventListener("visibilitychange", once); requestAnimationFrame(tick); });
-}
+function tick() { phase += 0.0011; drawScope(); requestAnimationFrame(tick); }
 window.addEventListener("resize", () => { fitScope(); drawScope(); });
-matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawScope);
 fitScope(); drawScope();
 if (!reduce) requestAnimationFrame(tick);
 </script>
