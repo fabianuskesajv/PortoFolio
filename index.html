@@ -290,7 +290,7 @@ const DATA = {
   summary:
     "Lulusan Teknik Elektro (IPK 3,61/4,00) dengan pengalaman langsung dalam desain PCB, pengujian dan troubleshooting perangkat keras, integrasi dan kalibrasi sensor, serta otomasi. Spesialisasi di elektronika daya dan sistem kontrol.",
   about:
-    "Penulis dan presenter makalah konferensi terindeks IEEE tentang regulasi tegangan pada sistem fotovoltaik off-grid menggunakan konverter boost cascade 4 tingkat dan inverter tiga-lengan satu fasa.",
+    "Penulis makalah konferensi terindeks IEEE tentang regulasi tegangan pada sistem fotovoltaik off-grid menggunakan konverter boost cascade 4 tingkat dan inverter tiga-lengan satu fasa.",
   cvFile: "cv.pdf", // taruh file CV di root repo dengan nama ini
 
   contact: {
@@ -306,7 +306,7 @@ const DATA = {
       title: "Asisten Laboratorium Sistem Kontrol",
       org: "Universitas Katolik Soegijapranata",
       when: "Sep 2025 – Des 2025",
-      images: ["images/pengalaman-lab-kontrol.jpeg", "images/surat asdos.jpg"],
+      images: ["images/pengalaman-lab-kontrol.jpeg"],
       points: [
         "Membantu pelaksanaan sesi Laboratorium Sistem Kontrol dan membimbing mahasiswa memahami sistem kontrol, PWM, SPWM, dan elektronika daya.",
         "Mengembangkan dan menguji modul perangkat keras Buck Chopper dengan metode kendali P, PI, dan Hysteresis untuk regulasi tegangan.",
@@ -318,7 +318,7 @@ const DATA = {
       title: "Magang Divisi Maintenance",
       org: "PT Paiton Operation & Maintenance Indonesia",
       when: "Feb 2025 – Mar 2025",
-      images: ["images/pengalaman-paiton.jpeg", "images/sertif paiton.jpeg"],
+      images: ["images/pengalaman-paiton.jpeg"],
       points: [
         "Magang selama satu bulan di divisi Maintenance, memperoleh pengalaman langsung dalam operasi pemeliharaan pembangkit listrik dan troubleshooting peralatan.",
         "Membantu pemeliharaan preventif dan inspeksi pada sistem Plant Switchgear, FGD Control, dan ESP.",
@@ -333,7 +333,8 @@ const DATA = {
   projectCategories: [
     "Proyek Elektronika Daya",
     "Proyek Otomasi Industri & Kontrol",
-    "Proyek IoT & Sistem Monitoring"
+    "Proyek IoT & Sistem Monitoring",
+    "Proyek Desain Instalasi Listrik"
   ],
 
   projects: [
@@ -342,7 +343,7 @@ const DATA = {
       title: "Regulasi Tegangan pada Sistem PV Off-Grid dengan Cascade Boost dan Inverter Tiga-Lengan",
       meta: "2025 – 2026 · Dibimbing oleh Dr. Leonardus Heru Pratomo",
       badge: "Diterima di FORTEI-ICEE 2026",
-      images: ["images/proyek-pv-offgrid-1.jpeg", "images/fortei-icee2026_page-0001.jpg"],
+      images: ["images/proyek-pv-offgrid-1.jpeg", "images/fortei-icee2026_page-0001.jpg", "images/proyek-pv-offgrid-3.jpg"],
       points: [
         "Penulis dan presenter makalah di FORTEI-ICEE 2026 (International Conference on Electrical Engineering).",
         "Merancang sistem konversi daya PV off-grid yang mengintegrasikan konverter boost cascade 4 tingkat tanpa kapasitor DC-link perantara dengan inverter tiga-lengan satu fasa berbasis STM32F407 dan kendali tegangan PI loop tertutup.",
@@ -398,6 +399,29 @@ const DATA = {
       link: ""
     },
     {
+      category: "Proyek Elektronika Daya",
+      title: "Inverter Tiga Fasa untuk Motor Induksi",
+      meta: "Inverter tiga fasa · Motor induksi",
+      images: ["images/proj-inverter-3phase-1.jpeg", "images/output 3 fasa.jpeg"],
+      points: [
+        "Merancang skematik dan PCB untuk tahap daya inverter tiga fasa beserta rangkaian driver-nya, untuk menggerakkan motor induksi tiga fasa.",
+        "Menguji perangkat keras di meja laboratorium menggunakan catu daya DC, osiloskop, dan multimeter, lalu memastikan hasil perangkat keras sesuai dengan simulasi."
+      ],
+      tags: ["Inverter 3 fasa", "Motor induksi", "Desain PCB", "Simulasi vs perangkat keras"],
+      link: ""
+    },
+    {
+      category: "Proyek Elektronika Daya",
+      title: "Konverter Zeta",
+      meta: "Konverter DC-DC Zeta",
+      images: ["images/proj-zeta-converter-1.jpeg", "images/proj-zeta-converter-2.jpeg", "images/proj-zeta-converter-3.jpeg"],
+      points: [
+        "Merancang skematik dan PCB untuk konverter Zeta DC-DC beserta papan kendali PWM-nya, lalu memastikan hasil perangkat keras sesuai dengan simulasi, termasuk pengujian dengan beban lampu."
+      ],
+      tags: ["Konverter Zeta", "DC-DC", "Desain PCB", "Simulasi vs perangkat keras"],
+      link: ""
+    },
+    {
       category: "Proyek IoT & Sistem Monitoring",
       title: "Sistem Pembersih Panel Surya Otomatis",
       meta: "Kendali berbasis IoT",
@@ -407,6 +431,26 @@ const DATA = {
         "Pembersihan memakai air bertekanan yang disemprotkan melalui nozzle untuk memulihkan efisiensi panel dan daya listrik keluaran."
       ],
       tags: ["IoT", "Fotovoltaik", "Air bertekanan"],
+      link: ""
+    },
+    {
+      category: "Proyek Desain Instalasi Listrik",
+      title: "Desain Instalasi Listrik Gedung Rumah Sakit",
+      meta: "Apr 2023 – Jun 2023 · Proyek akhir Gambar Teknik · Perhitungan beban dengan Excel · Tim 2 orang",
+      images: ["images/proj-hospital-electrical-1.jpeg", "images/proj-hospital-electrical-2.jpeg", "images/proj-hospital-electrical-3.jpeg" ],
+      points: [
+        "Merancang instalasi penerangan, pendingin udara, dan stop kontak untuk lantai dasar dan lantai satu gedung rumah sakit empat lantai, sebagai proyek tim dua orang.",
+        "Menghitung jumlah titik lampu per ruangan dari iluminansi yang dibutuhkan, keluaran lumen, faktor kehilangan cahaya (0,8), dan koefisien pemanfaatan (0,5), lalu menentukan kapasitas AC dari luas ruangan dengan metode beban BTU/h.",
+        "Memilih model lampu dan AC untuk setiap ruangan pada lebih dari 100 ruangan.",
+        "Menghasilkan gambar instalasi berskala 1:200 beserta buku kerja Excel perhitungan beban."
+      ],
+      stats: [
+        { v: "100+", l: "ruangan" },
+        { v: "1:200", l: "skala gambar" },
+        { v: "0,8", l: "faktor kehilangan cahaya" },
+        { v: "0,5", l: "koefisien pemanfaatan" }
+      ],
+      tags: ["Desain pencahayaan", "Perhitungan beban AC", "Gambar listrik", "Excel"],
       link: ""
     }
     /* Tambahkan proyek lain di sini: salin satu blok { ... } di atas, lalu isi "category" dengan salah satu nama di projectCategories. */
@@ -582,7 +626,7 @@ let pn = 0;
 function renderProject(p) {
   pn++;
   const parts = (p.meta || "").split(" · ");
-  const year = /^\d{4}/.test(parts[0]) ? parts.shift() : "";
+  const year = /^([A-Za-z]{3,4} )?\d{4}/.test(parts[0]) ? parts.shift() : "";
   const sub = parts.join(" — ");
   const head = h("div", { class: "project-head" },
     h("div", { class: "project-meta" }, h("span", { class: "yr", text: year }), h("span", { class: "project-id", text: "PROYEK " + nz(pn) })),
